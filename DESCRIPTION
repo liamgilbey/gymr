@@ -1,0 +1,13 @@
+Package: gymr
+Type: Package
+Title: Build Environments to Test Reinforcement Learning Algorithms
+Version: 0.1.0
+Authors@R: c(
+  person("Liam", "Gilbey", , "liam.gilbey@gmail.com", c("aut", "cre"))
+  )
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Inspired from Open AI's gym in Python.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
