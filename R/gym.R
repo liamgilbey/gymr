@@ -1,6 +1,9 @@
 
 #' Build a gym environment
 #'
+#' A gym environment is designed to work with functions to optimise decisions through reinforcement learning. It is designed to be able to plug in
+#' functions to tackle new reinforcement learning tasks, and to take care of the running of these functions using R6 classes.
+#'
 #' @section Creating the gym:
 #' A gym environment is an R6 object, that can be created with \code{gym_env$new()}. It has the following arguments:
 #' \describe{
@@ -9,7 +12,7 @@
 #'   \item{length}{The number of actions within the environment until it is considered to be done. By default this is 1,000 actions.}
 #' }
 #'
-#' @section Working out at the gym:
+#' @section Using the gym:
 #' There are three key functions to use with a gym class.
 #' \describe{
 #'   \item{\code{gym_env$step(a)}}{This function allows us to step through the environment we have defined above. We supply an action, and gym then
@@ -20,6 +23,22 @@
 #' }
 #'
 #' @export
+#' @examples
+#' \dontrun{
+#'
+#' # simple gym environment with nchain
+#' mygame <- gym_env$new(nchain)
+#'
+#' # run through one step of the environment
+#' mygame$step(1)
+#'
+#' # get the results
+#' mygame$get()
+#' }
+#'
+#' @name gym_env
+NULL
+
 gym_env <- R6::R6Class(
   "gym",
 
