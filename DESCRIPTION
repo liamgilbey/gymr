@@ -6,7 +6,8 @@ Authors@R: c(
   person("Liam", "Gilbey", , "liam.gilbey@gmail.com", c("aut", "cre"))
   )
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: Inspired from Open AI's gym in Python.
+Description: A package inspired from Open AI's gym in Python. The package is designed to provide a lightweight way of building 
+  and training reinforcement learning algorithms inside of R.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true

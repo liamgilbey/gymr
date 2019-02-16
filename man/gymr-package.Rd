@@ -6,7 +6,8 @@
 \alias{gymr-package}
 \title{gymr: Build Environments to Test Reinforcement Learning Algorithms}
 \description{
-Inspired from Open AI's gym in Python.
+A package inspired from Open AI's gym in Python. The package is designed to provide a lightweight way of building 
+  and training reinforcement learning algorithms inside of R.
 }
 \author{
 \strong{Maintainer}: Liam Gilbey \email{liam.gilbey@gmail.com}

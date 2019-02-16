@@ -1,5 +1,5 @@
 
-#' Build a gym environment
+#' Load a gym environment
 #'
 #' A gym environment is designed to work with functions to optimise decisions through reinforcement learning. It is designed to be able to plug in
 #' functions to tackle new reinforcement learning tasks, and to take care of the running of these functions using R6 classes.
@@ -27,19 +27,19 @@
 #' \dontrun{
 #'
 #' # simple gym environment with nchain
-#' mygame <- gym_env$new(nchain)
+#' myfunc <- load_gym_env$new(nchain)
 #'
 #' # run through one step of the environment
-#' mygame$step(1)
+#' myfunc$step(1)
 #'
 #' # get the results
-#' mygame$get()
+#' myfunc$get()
 #' }
 #'
-#' @name gym_env
+#' @name load_gym_env
 NULL
 
-gym_env <- R6::R6Class(
+load_gym_env <- R6::R6Class(
   "gym",
 
   public = list(
@@ -49,8 +49,8 @@ gym_env <- R6::R6Class(
     print = function(){
       gym_print(private)
     },
-    step = function(a, r = 0.8, ...){
-      gym_step(self, private, a, r, ...)
+    step = function(a, ...){
+      gym_step(self, private, a, ...)
     },
     reset = function(){
       gym_reset(self, private)
@@ -66,39 +66,41 @@ gym_env <- R6::R6Class(
     current_reward = 0,
     num_steps = 0,
     done = F,
-    game = NA,
+    func = NA,
     length = NA,
     action_space = NA,
-    observation_space = NA
+    observation_space = NA,
+    random = 0.8
   )
 )
 
 # Initialize a gym environment object
 gym_init <- function(self, private, env = NULL, length){
   env <- gym_validate_env(env)
-  private$game <- env$game
+  private$func <- env$func
   private$length <- length
   private$action_space <- env$action_space
   private$observation_space <- env$observation_space
+  private$random <- env$random
   self
 }
 
-# Complete an action in the specified game
-gym_step <- function(self, private, a, r, ...){
+# Complete an action in the specified func
+gym_step <- function(self, private, a, ...){
   a <- gym_validate_action(private, a)
-  a <- gym_randomize(self, private, a, r)
-  game_results <- private$game(state = private$state, action = a, ...)
-  s <- gym_validate_state(private, game_results$next_state)
-  private$state <- game_results$next_state
-  private$current_reward <- game_results$reward
-  private$total_reward <- private$total_reward  + game_results$reward
+  a <- gym_randomize(private, a, private$random)
+  func_results <- private$func(state = private$state, action = a, ...)
+  s <- gym_validate_state(private, func_results$next_state)
+  private$state <- func_results$next_state
+  private$current_reward <- func_results$reward
+  private$total_reward <- private$total_reward  + func_results$reward
   private$num_steps <- private$num_steps + 1
   gym_check_steps(self, private)
   self
 }
 
 # Randomize the action to some degree
-gym_randomize <- function(self, private, a, r){
+gym_randomize <- function(private, a, r){
   if(runif(1, 0, 1) >= r){
     as <- private$action_space[!private$action_space %in% a]
     if(length(as) > 1){
