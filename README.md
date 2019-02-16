@@ -3,6 +3,8 @@
 gymr
 ====
 
+[![Travis Build Status](https://travis-ci.org/liamgilbey/gymr.svg?branch=master)](https://travis-ci.org/liamgilbey/gymr)
+
 Building reinforcement learning environments inside of R.
 
 Description
