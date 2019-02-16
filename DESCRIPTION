@@ -8,7 +8,9 @@ Authors@R: c(
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: A package inspired from Open AI's gym in Python. The package is designed to provide a lightweight way of building 
   and training reinforcement learning algorithms inside of R.
-License: GPL-2
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+URL: https://github.com/liamgilbey/gymr
+BugReports: https://github.com/liamgilbey/gymr/issues

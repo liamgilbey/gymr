@@ -9,6 +9,14 @@
 A package inspired from Open AI's gym in Python. The package is designed to provide a lightweight way of building 
   and training reinforcement learning algorithms inside of R.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/liamgilbey/gymr}
+  \item Report bugs at \url{https://github.com/liamgilbey/gymr/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Liam Gilbey \email{liam.gilbey@gmail.com}
 
